@@ -1,0 +1,89 @@
+basePath: /
+definitions:
+  api.ProfessorHours:
+    properties:
+      committed_hours:
+        type: number
+      first_name:
+        type: string
+      last_name:
+        type: string
+      professor_id:
+        type: integer
+    type: object
+  api.RoomSchedule:
+    properties:
+      building_name:
+        type: string
+      occupied_schedules:
+        items:
+          $ref: '#/definitions/api.ScheduleEntry'
+        type: array
+      room_id:
+        type: integer
+      room_number:
+        type: string
+    type: object
+  api.ScheduleEntry:
+    properties:
+      day_of_week:
+        type: integer
+      end_time:
+        type: string
+      start_time:
+        type: string
+      subject_code:
+        type: string
+      subject_name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API for university demo project
+  title: Uni-Demo API
+  version: "1.0"
+paths:
+  /professor-hours:
+    get:
+      description: Returns professor office hours
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/api.ProfessorHours'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get professor hours
+      tags:
+      - professors
+  /room-schedules:
+    get:
+      description: Returns room schedules
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/api.RoomSchedule'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get room schedules
+      tags:
+      - rooms
+swagger: "2.0"

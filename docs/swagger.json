@@ -1,0 +1,136 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API for university demo project",
+        "title": "Uni-Demo API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/professor-hours": {
+            "get": {
+                "description": "Returns professor office hours",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "professors"
+                ],
+                "summary": "Get professor hours",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/api.ProfessorHours"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/room-schedules": {
+            "get": {
+                "description": "Returns room schedules",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "rooms"
+                ],
+                "summary": "Get room schedules",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/api.RoomSchedule"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.ProfessorHours": {
+            "type": "object",
+            "properties": {
+                "committed_hours": {
+                    "type": "number"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "professor_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "api.RoomSchedule": {
+            "type": "object",
+            "properties": {
+                "building_name": {
+                    "type": "string"
+                },
+                "occupied_schedules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/api.ScheduleEntry"
+                    }
+                },
+                "room_id": {
+                    "type": "integer"
+                },
+                "room_number": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.ScheduleEntry": {
+            "type": "object",
+            "properties": {
+                "day_of_week": {
+                    "type": "integer"
+                },
+                "end_time": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "subject_code": {
+                    "type": "string"
+                },
+                "subject_name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
