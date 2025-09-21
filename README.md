@@ -11,7 +11,7 @@ Utilizamos Golang com o framework Chi para lidar com as requisições. O banco d
 
 ## Como usar
 
-Para usar a API, basta executar o comando `go run main.go` na pasta raiz do projeto. Isso irá inicializar o servidor na porta 8080.
+Para usar a API, basta executar o comando `docker compose up` na pasta raiz do projeto. Isso irá inicializar o servidor na porta 8080 e o container do banco de dados localmente.
 
 ## Documentação
 A documentação Swagger da API pode ser acessada no caminho `/swagger/index.html`
